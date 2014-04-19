@@ -16,7 +16,7 @@ IRB is a [REPL](http://en.wikipedia.org/wiki/Read%E2%80%93eval%E2%80%93print_loo
 19.class
 [1, 2, 3].class
 "A string object".upcase
-"A string object".dowcase
+"A string object".downcase
 [1, 2, 3].shuffle
 ```
 
