@@ -9,13 +9,13 @@ def sum_with_while(min, max)
     end
   end
 =end
-  sum = 0
-  index = min
-  while index <= max
-    sum += index
-    index += 1
-  end
-  sum
+    sum = 0
+    index = min
+    while index <= max
+      sum += index
+      index += 1
+    end
+    sum
 end
 
 def sum_with_for(min, max)
@@ -30,7 +30,7 @@ def sum_with_for(min, max)
   end
 =end
   sum = 0
-  for i in min..max
+  for i in min..max do
     sum += i
   end
   sum
