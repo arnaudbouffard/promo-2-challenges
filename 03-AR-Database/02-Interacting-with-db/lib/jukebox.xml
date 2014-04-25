@@ -41,7 +41,7 @@
   <row name="id" null="1" autoincrement="1">
     <datatype>INTEGER</datatype>
     <default>NULL</default></row>
-    <row name="Title" null="1" autoincrement="0">
+    <row name="title" null="1" autoincrement="0">
       <datatype>VARCHAR</datatype>
       <default>NULL</default></row>
       <row name="artist_id" null="1" autoincrement="0">
@@ -85,35 +85,35 @@
                     <part>id</part>
                   </key>
                 </table>
-                <table x="212" y="352" name="Tracks">
+                <table x="212" y="352" name="tracks">
                   <row name="id" null="1" autoincrement="1">
                     <datatype>INTEGER</datatype>
                     <default>NULL</default></row>
-                    <row name="Name" null="1" autoincrement="0">
+                    <row name="name" null="1" autoincrement="0">
                       <datatype>VARCHAR</datatype>
                       <default>NULL</default></row>
-                      <row name="AlbumId" null="1" autoincrement="0">
+                      <row name="album_id" null="1" autoincrement="0">
                         <datatype>INTEGER</datatype>
                         <default>NULL</default><relation table="albums" row="id" />
                       </row>
-                      <row name="MediaTypeId" null="1" autoincrement="0">
+                      <row name="mediatype_id" null="1" autoincrement="0">
                         <datatype>INTEGER</datatype>
                         <default>NULL</default><relation table="mediatypes" row="id" />
                       </row>
-                      <row name="GenreId" null="1" autoincrement="0">
+                      <row name="genre_id" null="1" autoincrement="0">
                         <datatype>INTEGER</datatype>
                         <default>NULL</default><relation table="genres" row="id" />
                       </row>
-                      <row name="Composer" null="1" autoincrement="0">
+                      <row name="composer" null="1" autoincrement="0">
                         <datatype>VARCHAR</datatype>
                         <default>NULL</default></row>
-                        <row name="Milliseconds" null="1" autoincrement="0">
+                        <row name="milliseconds" null="1" autoincrement="0">
                           <datatype>INTEGER</datatype>
                           <default>NULL</default></row>
-                          <row name="Bytes" null="1" autoincrement="0">
+                          <row name="bytes" null="1" autoincrement="0">
                             <datatype>INTEGER</datatype>
                             <default>NULL</default></row>
-                            <row name="UnitPrice" null="1" autoincrement="0">
+                            <row name="unitprice" null="1" autoincrement="0">
                               <datatype>DECIMAL</datatype>
                               <default>NULL</default></row>
                               <key type="PRIMARY" name="">
