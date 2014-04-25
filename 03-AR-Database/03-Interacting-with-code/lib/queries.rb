@@ -58,7 +58,6 @@ def long_tracks(db, min_length)
   db.execute( "select Name, Milliseconds from Track where Milliseconds > #{min_length} order by Milliseconds" ) do |row|
       long_songs << row
     end
-
     long_songs.each { |song| puts "        - #{song[0]}, #{mill_to_min(song[1])} mins"}
     puts "\n      There are #{number_of_rows(db, "Track")} songs out of which #{long_songs.length} are more than #{mill_to_min(min_length)} mins long!"
 end
@@ -73,3 +72,4 @@ love_tracks(db)
 divider
 long_tracks(db, min_to_mill(10))
 3.times do divider end
+

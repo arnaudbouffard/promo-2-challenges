@@ -45,7 +45,7 @@ def top_five_rock_artists(db)
     WHERE Genre.Name = 'Rock'
     GROUP BY Artist.Name
     ORDER BY NumberTracks desc
-    LIMIT 5
+
     ' ) do |row|
   p row
 end
