@@ -12,14 +12,14 @@ db = SQLite3::Database.new(DB_PATH.to_s)
 
 while true
 
-  puts "Hey you, what do you want to do today? Enter <task_id>"
+  puts "\n Hey you, what do you want to do today? Enter <task_id>"
   puts "1. Create a post"
   puts "2. Read your posts"
   puts "3. Delete all posts"
   puts "4. Exit"
-  
+
 	choice =  gets.chomp.to_i
-	
+
 	case choice
   when 1
     name = ask_and_get("name")
@@ -32,11 +32,11 @@ while true
     #TODO: prints nicely the results from DB queries (you could use #strftime to format datetime display)
   when 3
     delete_posts(db)
-    
+
   #TODO: add other CRUD tasks to your interface if you wish!
-  when 4 
+  when 4
     break
-	end 
-	
+	end
+
 end
 

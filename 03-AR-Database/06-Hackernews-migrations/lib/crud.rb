@@ -3,7 +3,13 @@ def create_post(db, post)
 end
 
 def get_posts(db)
-  db.execute("SELECT * FROM posts")
+    sql = %Q{ SELECT  * FROM posts
+  }
+  puts "\n"
+  db.execute(sql) do |row|
+    p row
+  end
+  puts "\n"
 end
 
 def get_post(db, id)
@@ -15,7 +21,9 @@ def update_post(db, id, name)
 end
 
 def delete_posts(db)
-  db.execute("DELETE FROM posts")
+  sql = %Q{ DELETE FROM posts}
+  db.execute(sql)
+  puts "\n All posts have been deleted \n"
 end
 
 def delete_post(db, id)
