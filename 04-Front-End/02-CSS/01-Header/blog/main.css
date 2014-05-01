@@ -1,5 +1,51 @@
+h1 {
+  text-align: center;
+  }
+
+header{
+  border-bottom: 1px dotted #808080;
+  padding: 10px;
+}
+
+header ul{
+  list-style-type:none;
+  text-align: center;
+  margin: 0;
+  padding: 0;
+}
+
+header li{
+  display: inline-block;
+}
+
+header a{
+  display:block;
+  width:100px;
+
+}
+
+footer{
+  border-top: 1px dotted #808080;
+  padding: 10px;
+}
+
+
+
+
+
 .container {
-  margin: 0 auto;  
+  margin: 0 auto;
   width: 720px;
 	font-family: 'Open Sans', sans-serif;
+}
+
+.content {
+clear:left;
+}
+
+.post {
+/*  margin: 0 auto;
+  width: 720px;
+  */
+
 }
