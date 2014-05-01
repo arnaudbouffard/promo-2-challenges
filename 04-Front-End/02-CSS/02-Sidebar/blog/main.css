@@ -1,5 +1,47 @@
+header {
+  border-bottom:solid;
+  border-width: 1px;
+}
+
+body,
+html {
+  margin:0;
+  padding:0;
+}
+
+nav {
+  float: left;
+  width: 120px;
+  padding-top: 30px;
+}
+
+ul {
+  margin:0;
+  padding:0;
+  list-style:none;
+}
+
+footer {
+  clear:both;
+  padding-top: 30px;
+  padding-bottom: 30px;
+  padding-left: 30px;
+  border-top: solid;
+  border-width: 1px;
+}
+
+
+.content {
+  float: left;
+  padding-top: 10px;
+  padding-left: 40px;
+  width: 679px;
+  border-left: solid;
+  border-width: 1px;
+}
+
 .container {
-  margin: 0 auto;  
+  margin: 0 auto;
   width: 840px;
 	font-family: 'Open Sans', sans-serif;
 }
