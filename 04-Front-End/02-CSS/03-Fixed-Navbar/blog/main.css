@@ -1,5 +1,59 @@
-.container {
-  margin: 0 auto;  
+/*                THIS IS FIXED              */
+header {
+  position: fixed;
+  height: 110px;
+  width: 100%;
+  background-color: black;
+  color: white;
+  z-index: 2;
+}
+
+.nav-content {
+  background-color: blue;
+  width: 840px;
+  height: 110px;
+  margin: auto;
+}
+
+h1 {
+  display: inline;
+  /*height: 110px;*/
+  /*width: 520px;*/
+  background-color: lime;
+}
+
+/*nav {
+  display: inline;
+  width: 320px;
+  background-color: red;
+}*/
+
+nav a {
+  display: inline;
+  /*width: 120px;
+  height: 110px;*/
+  vertical-align: center;
+  background-color: purple;
+  color: white;
+}
+
+/* NOW THIS MOVES*/
+.content {
+  position: relative;
+  top: 110px;
+  z-index: 1;
+  margin: 0 auto;
+  padding-top: 10px;
   width: 840px;
 	font-family: 'Open Sans', sans-serif;
+  background-color: #ddd
 }
+
+footer {
+  position: relative;
+  top: 110px;
+  width: 840px;
+  margin: auto;
+}
+
+
