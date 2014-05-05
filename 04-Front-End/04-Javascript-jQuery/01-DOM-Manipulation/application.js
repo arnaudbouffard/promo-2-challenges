@@ -37,7 +37,10 @@ function run_challenges() {
 
   // Ex 7. Write some code to sum all points given to all teams
   var sum = 0;  // TODO: replace 0 with your sum result, keep the sum variable.
-
+  var scores = $('tbody td:last-child');
+  scores.each(function() {
+    sum += parseFloat($(this).text());
+  });
 
 
   // Ex 8. Change the background color of all table header cells to #DDF4FF
