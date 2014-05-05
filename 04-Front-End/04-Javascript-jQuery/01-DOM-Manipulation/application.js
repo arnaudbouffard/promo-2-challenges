@@ -14,7 +14,7 @@ function run_challenges() {
 
   // Ex 2. Fill the content of the email input with your email
 
-
+  $("input").attr('value', 'arnaud.bouffard@m4x.org');
 
   // Ex 3. Replace the email hint (next to the input) with 'This is my email now'
   //       The text should be emphasized using a <strong> tag
