@@ -55,7 +55,7 @@ $('#results').css({
 });
   // Ex 10. Remove the "Email:" label from the DOM
 
-
+$('label').remove()
 
   // Checking exercise answers. DO NOT MODIFY BELOW
   assert_equal(email, "boris@lewagon.org");
