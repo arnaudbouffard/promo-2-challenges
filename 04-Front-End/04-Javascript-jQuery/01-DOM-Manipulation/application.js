@@ -23,10 +23,10 @@ function run_challenges() {
 
   // Ex 4. Add the .blue CSS class to the table header cells (th elements)
 
-
+$('th').addClass('blue');
 
   // Ex 5. Count the number of table body rows there are (team count!)
-  var team_count = 0;  // TODO: replace 0, keep the team_count variable.
+  var team_count = $('tbody tr').length;  // TODO: replace 0, keep the team_count variable.
 
 
 
