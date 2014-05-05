@@ -8,7 +8,7 @@
 function run_challenges() {
 
   // Ex 1. Read the content of the email input
-  var email = null;  // TODO: replace null, keep the email variable.
+  var email = $("input").attr('value');  // TODO: replace null, keep the email variable.
 
 
 
