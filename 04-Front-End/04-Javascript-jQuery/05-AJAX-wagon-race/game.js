@@ -1,5 +1,10 @@
 $(document).ready(function() {
 
+var gameIsOn = false;
+console.log(gameIsOn);
+$('.game_wrapper').hide();
+$('#getnames').hide();
+
  var movePlayer = function(player) {
   var raceId = '#' + player + '_race';
   var currentTd = $(raceId + ' .active');
@@ -7,68 +12,82 @@ $(document).ready(function() {
   return gameIsOn = (currentTd.index() < $('.finish').index()-1);
 };
 
-var resetGame = function() {
-  winner = '';
-  $('.reset_indication').css({color: 'black'})
-  $('.results_wrapper').hide();
-  $('td').removeClass('active');
-  $('td.start').addClass('active');
-  gameIsOn = true;
+var endSession = function() {
+  var endTime = new Date;
+  // AJAX <-- game time
+  console.log((endTime-startTime)/1000 + ' seconds');
+  // AJAX <-- winner
+  console.log(winner);
+
+  $("#getnames input:nth-child(1)").val("name of 1st player");
+  $("#getnames input:nth-child(2)").val("name of 2nd player");
+
+  $('.game_wrapper').hide();
+  $('#sessionclosed').show();
+  // closeSession()
 };
 
-var startGame = function() {
-  $('.game_wrapper').hide();
+
+
+var startSession = function() {
+  $('td').removeClass('active');
+  $('td.start').addClass('active');
+  $('#sessionclosed').hide();
   winner = '';
   gameIsOn = true;
   player1Name = 'no name for player1';
   player2Name = 'no name for player2';
-  player1Score = 0;
-  player2Score= 0;
+  $('#getnames').show();
 };
 
-// Setting all variables to initial values, starting game
 
-startGame();
+$('#sessionclosed').submit(function(event) {
+  startSession();
+  console.log(gameIsOn);
+  event.preventDefault();
+});
 
-  $('#target').submit(function(event) {
-    if (($("input:first").val() != "name of 1st player") & ($("input:nth-child(2)").val() != "name of 2nd player")) {
-      player1Name = $("input:nth-child(1)").val();
+  $('#getnames').submit(function(event) {
+    if (($("#getnames input:nth-child(1)").val() !== "name of 1st player") && ($("#getnames input:nth-child(2)").val() !== "name of 2nd player")) {
+      player1Name = $("#getnames input:nth-child(1)").val();
       $('.player1name').text(player1Name);
-      player2Name = $("input:nth-child(2)").val();
+      player2Name = $("#getnames input:nth-child(2)").val();
       $('.player2name').text(player2Name);
-
+      console.log(gameIsOn);
       $('.game_wrapper').show();
-      $('#target').hide();
-
+      $('#getnames').hide();
+      startTime = new Date;
       $('body').keyup(function(e) {
         var which = e.which;
         if (gameIsOn == true) {
+          console.log(gameIsOn);
           switch (which) {
             case 65:
             winner = player1Name + ' won.'
             gameIsOn = movePlayer('player1');
-            if (gameIsOn == false){
-              $('.player1score').text(player1Score += 1);
-            };
             break;
 
             case 80:
-
             winner = player2Name + ' won.'
             gameIsOn = movePlayer('player2');
-            if (gameIsOn == false){
-              $('.player2score').text(player2Score += 1);
-            };
             break;
 
             default:
-            console.log("Top/bottom player PRESS A/P key.");
+            console.log("Wrong key pressed.");
           }
         };
+        console.log(gameIsOn);
         if (gameIsOn == false) {
-          $('.results_wrapper').show().text(winner);
-          $('.reset_indication').css({color: 'red'})
-          $(document).click(resetGame);
+          console.log('plr1' + ($("#getnames input:nth-child(1)").val() !== "name of 1st player"));
+          console.log('plr2' + ($("#getnames input:nth-child(2)").val() !== "name of 2nd player"));
+          console.log(($("#getnames input:nth-child(2)").val() !== "name of 2nd player") && ($("#getnames input:nth-child(1)").val() !== "name of 1st player"))
+          endSession();
+          console.log('plr1' + ($("#getnames input:nth-child(1)").val() !== "name of 1st player"));
+          console.log('plr2' + ($("#getnames input:nth-child(2)").val() !== "name of 2nd player"));
+          console.log(($("#getnames input:nth-child(2)").val() !== "name of 2nd player") && ($("#getnames input:nth-child(1)").val() !== "name of 1st player"))
+
+             // && ($("#getnames input:nth-child(2)").val() !== "name of 2nd player")));
+          console.log(gameIsOn);
         };
       });
 

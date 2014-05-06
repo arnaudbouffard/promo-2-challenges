@@ -8,7 +8,10 @@
   <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
 </head>
 <body>
-    <form id="target">
+    <form id="sessionclosed">
+      <input type="submit" value="Start a game !">
+    </form>
+    <form id="getnames">
       <input type="text" value="name of 1st player">
       <input type="text" value="name of 2nd player">
       <input type="submit" value="Yallah !">
@@ -16,7 +19,7 @@
   <div class="game_wrapper">
     <div>Press A/P keys to make black squares move right. First player to reach the end square wins!</div>
     <br>
-    <div class="reset_indication">Click to reset game.</div>
+    <!-- <div>Time elapsed: </div><div class="time"></div> -->
     <br>
     <div class="results_wrapper">
     </div>
