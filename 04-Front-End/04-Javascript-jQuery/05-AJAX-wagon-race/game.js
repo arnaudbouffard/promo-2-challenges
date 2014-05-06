@@ -4,26 +4,39 @@ $(document).ready(function() {
   var raceId = '#' + player + '_race';
   var currentTd = $(raceId + ' .active');
   currentTd.removeClass('active').next().addClass('active');
-  return gameIsOn = (currentTd.index() < 12);
+  return gameIsOn = (currentTd.index() < $('.finish').index()-1);
 };
 
 var resetGame = function() {
   winner = '';
+  $('.reset_indication').css({color: 'black'})
   $('.results_wrapper').hide();
   $('td').removeClass('active');
-  $('td:first-child').addClass('active');
+  $('td.start').addClass('active');
   gameIsOn = true;
 };
 
-
+var startGame = function() {
   $('.game_wrapper').hide();
-  var winner = '';
-  var gameIsOn = true;
+  winner = '';
+  gameIsOn = true;
+  player1Name = 'no name for player1';
+  player2Name = 'no name for player2';
+  player1Score = 0;
+  player2Score= 0;
+};
 
+// Setting all variables to initial values, starting game
 
+startGame();
 
   $('#target').submit(function(event) {
-    if ($("input:first").val() === "a") {
+    if (($("input:first").val() != "name of 1st player") & ($("input:nth-child(2)").val() != "name of 2nd player")) {
+      player1Name = $("input:nth-child(1)").val();
+      $('.player1name').text(player1Name);
+      player2Name = $("input:nth-child(2)").val();
+      $('.player2name').text(player2Name);
+
       $('.game_wrapper').show();
       $('#target').hide();
 
@@ -32,30 +45,34 @@ var resetGame = function() {
         if (gameIsOn == true) {
           switch (which) {
             case 65:
-            var player1StillRunning = movePlayer('player1');
-            winner = 'Player 1 won.'
-            console.log(gameIsOn = player1StillRunning);
+            winner = player1Name + ' won.'
+            gameIsOn = movePlayer('player1');
+            if (gameIsOn == false){
+              $('.player1score').text(player1Score += 1);
+            };
             break;
+
             case 80:
-            var player2StillRunning = movePlayer('player2');
-            winner = 'Player 2 won.'
-            console.log(gameIsOn = player2StillRunning);
+
+            winner = player2Name + ' won.'
+            gameIsOn = movePlayer('player2');
+            if (gameIsOn == false){
+              $('.player2score').text(player2Score += 1);
+            };
             break;
+
             default:
             console.log("Top/bottom player PRESS A/P key.");
           }
         };
         if (gameIsOn == false) {
           $('.results_wrapper').show().text(winner);
+          $('.reset_indication').css({color: 'red'})
           $(document).click(resetGame);
         };
       });
 
-
-
-      // return;
     }
-    // $( "span" ).text( "Not valid!" ).show().fadeOut( 1000 );
     event.preventDefault();
   });
 });
