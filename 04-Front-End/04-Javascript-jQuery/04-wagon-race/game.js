@@ -1,44 +1,47 @@
 $(document).ready(function() {
-  movePlayer = function(player) {
+
+  var winner = '';
+  var gameIsOn = true;
+  $('.results_wrapper').hide();
+
+  var movePlayer = function(player) {
     var raceId = '#' + player + '_race';
-    console.log(raceId);
-
     var currentTd = $(raceId + ' .active');
-    console.log('current TD = ' +currentTd.index());
+    currentTd.removeClass('active').next().addClass('active');
+    return gameIsOn = (currentTd.index() < 12);
+  };
 
-    currentTd.removeClass('active');
+  var resetGame = function() {
+    winner = '';
+    $('.results_wrapper').hide();
+    $('td').removeClass('active');
+    $('td:first-child').addClass('active');
+    gameIsOn = true;
 
-    var nextPos = (currentTd.index()+2).toString();
-    console.log('next Pos = ' +nextPos);
-    var newSelector = raceId + ' td:nth-child(' + nextPos + ')';
-    console.log(newSelector);
-    $(newSelector).addClass('active');
-  // console.log($(raceId + ' td:nth-child(' + nextPos + ')'));
-};
+  };
 
-$(document).on('keyup', function(event) {
-    // Detect which key was pressed and call the appropriate function
-    // Google "jquery keyup what key was pressed" if you don't know how
-  });
-
-
-$('body').keyup(function(e) {
-  // console.log( "Handler for .keypress() called." );
-  // console.log(which(event));
+  $('body').keyup(function(e) {
     var which = e.which;
-    // if(which == 65) {
-    //   movePlayer('player1');
-    // }
-    switch (which) {
-    case 65:
-      movePlayer('player1');
-      break;
-    case 80:
-      movePlayer('player2');
-      break;
-    default:
-      console.log("Top/bottom player PRESS A/P key.");
-}
- });
+    if (gameIsOn == true) {
+      switch (which) {
+        case 65:
+        var player1StillRunning = movePlayer('player1');
+        winner = 'Player 1 won.'
+        console.log(gameIsOn = player1StillRunning);
+        break;
+        case 80:
+        var player2StillRunning = movePlayer('player2');
+        winner = 'Player 2 won.'
+        console.log(gameIsOn = player2StillRunning);
+        break;
+        default:
+        console.log("Top/bottom player PRESS A/P key.");
+      }
+    };
+    if (gameIsOn == false) {
+      $('.results_wrapper').show().text(winner);
+      $(document).click(resetGame);
+    };
+  });
 
 });
