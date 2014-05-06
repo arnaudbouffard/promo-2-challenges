@@ -1,0 +1,61 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+  <title></title>
+  <meta charset="utf-8">
+  <link rel="stylesheet" href="css/normalize.css">
+  <link rel="stylesheet" href="main.css">
+  <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
+</head>
+<body>
+    <form id="target">
+      <input type="text" value="name of 1st player">
+      <input type="text" value="name of 2nd player">
+      <input type="submit" value="Start a Game !">
+    </form>
+  <div class="game_wrapper">
+    <div>Press A/P keys to make black squares move right. First player to reach the end square wins!</div>
+    <br>
+    <div>Click to reset game.</div>
+    <br>
+    <div class="results_wrapper">
+    </div>
+    <br>
+    <table class="racer_table">
+      <tr id="player1_race">
+        <td class="start active"></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td class="finish"></td>
+      </tr>
+      <tr id="player2_race">
+        <td class="start active"></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td class="finish"></td>
+        </tr>
+    </table>
+  </div>
+  <script src="game.js"></script>
+</body>
+</html>
