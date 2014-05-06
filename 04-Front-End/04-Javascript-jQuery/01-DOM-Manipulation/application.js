@@ -11,7 +11,6 @@ function run_challenges() {
   var email = $("input").attr('value');  // TODO: replace null, keep the email variable.
 
 
-
   // Ex 2. Fill the content of the email input with your email
 
   $("input").attr('value', 'arnaud.bouffard@m4x.org');
