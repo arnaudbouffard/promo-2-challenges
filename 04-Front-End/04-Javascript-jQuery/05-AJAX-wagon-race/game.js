@@ -1,5 +1,16 @@
 var gameIsOn = false;
-var startTime = new Date;
+var startTime;
+var apiUrl = 'http://wagon-race-api.herokuapp.com/';
+var session_id;
+
+
+function getRequest() {
+  $.get( apiUrl + '/game/session/new', function( data ) {
+    console.log(data['session_id']);
+    session_id = data['session_id'];
+  });
+};
+
 
 function switchToStartButton () {
   $('#startbutton').show();
@@ -97,6 +108,7 @@ function validKeyPressed(nb) {
 
 $(document).ready(function() {
   listenToKeypresses();
+  getRequest();
   switchToStartButton();
 
   $('#startbutton').submit(function(event) {
