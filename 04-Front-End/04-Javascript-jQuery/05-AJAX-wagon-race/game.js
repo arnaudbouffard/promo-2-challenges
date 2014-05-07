@@ -65,40 +65,31 @@ function listenToKeypresses() {
 };
 
 function onKeyUp(e) {
-    // console.log('you wake me up');
-
   if (!gameIsOn) {
     return;  // Nothing to do here
   }
-
   var which = e.which;
   switch (which) {
     case 65:
-    var moveEndedUpInWin = movePlayer('player1');
-    if (moveEndedUpInWin == true) {
-      gameIsOn = false;
-      var endTime = new Date;
-      postAjax(calculateGameTime(startTime, endTime), 1);
-      displayResults(1);
-      switchToStartButton();
-    }
+    validKeyPressed(1);
     break;
-
     case 80:
-    var moveEndedUpInWin = movePlayer('player2');
-    if (moveEndedUpInWin == true) {
-      gameIsOn = false;
-      var endTime = new Date;
-      postAjax(calculateGameTime(startTime, endTime), 2);
-      displayResults(2);
-      switchToStartButton();
-    }
+    validKeyPressed(2);
     break;
-
     default:
-    // console.log("Wrong key pressed.");
   }
 }
+
+function validKeyPressed(nb) {
+  var moveEndedUpInWin = movePlayer('player' + nb);
+  if (moveEndedUpInWin == true) {
+    gameIsOn = false;
+    var endTime = new Date;
+    postAjax(calculateGameTime(startTime, endTime), nb);
+    displayResults(nb);
+    switchToStartButton();
+  }
+};
 
 
 // ********************************DOCUMENT READY*****************************
