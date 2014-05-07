@@ -1,97 +1,124 @@
-$(document).ready(function() {
-
 var gameIsOn = false;
-console.log(gameIsOn);
-$('.game_wrapper').hide();
-$('#getnames').hide();
+var startTime = new Date;
 
- var movePlayer = function(player) {
-  var raceId = '#' + player + '_race';
-  var currentTd = $(raceId + ' .active');
-  currentTd.removeClass('active').next().addClass('active');
-  return gameIsOn = (currentTd.index() < $('.finish').index()-1);
+function switchToStartButton () {
+  $('#startbutton').show();
+  $('#form').hide();
+  $('#game').hide();
 };
 
-var endSession = function() {
-  var endTime = new Date;
+function switchToForm () {
+  $('#startbutton').hide();
+  $('#form').show();
+  $('#game').hide();
+  $('#results').hide();
+};
+
+function switchToGame () {
+  $('#startbutton').hide();
+  $('#form').hide();
+  $('#game').show();
+  $('#results').hide();
+};
+
+function displayResults (winner) {
+  $('#startbutton').hide();
+  $('#form').hide();
+  $('#game').hide();
+  $('#results').show().text(winner);
+};
+
+function movePlayer(player) {
+  // var raceId = '#' + player + '_race';
+  // var currentTd = $('#' + player + '_race' + ' .currentposition');
+  var positionPlayerMovedTo = $('#' + player + '_race' + ' .currentposition').index() + 1;
+  $('#' + player + '_race' + ' .currentposition').removeClass('currentposition').next().addClass('currentposition');
+
+  if (positionPlayerMovedTo == $('.finish').index()) {
+    return true;
+  };
+};
+
+function calculateGameTime(start, end) {
+  return (end-start)/1000;
+};
+
+function postAjax(gameTime, winner) {
   // AJAX <-- game time
-  console.log((endTime-startTime)/1000 + ' seconds');
+  console.log(gameTime + ' seconds');
   // AJAX <-- winner
   console.log(winner);
-
-  $("#getnames input:nth-child(1)").val("name of 1st player");
-  $("#getnames input:nth-child(2)").val("name of 2nd player");
-
-  $('.game_wrapper').hide();
-  $('#sessionclosed').show();
-  // closeSession()
 };
 
-
-
-var startSession = function() {
-  $('td').removeClass('active');
-  $('td.start').addClass('active');
-  $('#sessionclosed').hide();
-  winner = '';
-  gameIsOn = true;
-  player1Name = 'no name for player1';
-  player2Name = 'no name for player2';
-  $('#getnames').show();
+function setGameBoard() {
+  $('td').removeClass('currentposition');
+  $('td.start').addClass('currentposition');
 };
 
+function displayNames() {
+  $('#player1name').text($("#plyr1input").val());
+  $('#player2name').text($("#plyr2input").val());
+};
 
-$('#sessionclosed').submit(function(event) {
-  startSession();
-  console.log(gameIsOn);
-  event.preventDefault();
-});
+function listenToKeypresses() {
+  $('body').on('keyup', onKeyUp);
+};
 
-  $('#getnames').submit(function(event) {
-    if (($("#getnames input:nth-child(1)").val() !== "name of 1st player") && ($("#getnames input:nth-child(2)").val() !== "name of 2nd player")) {
-      player1Name = $("#getnames input:nth-child(1)").val();
-      $('.player1name').text(player1Name);
-      player2Name = $("#getnames input:nth-child(2)").val();
-      $('.player2name').text(player2Name);
-      console.log(gameIsOn);
-      $('.game_wrapper').show();
-      $('#getnames').hide();
-      startTime = new Date;
-      $('body').keyup(function(e) {
-        var which = e.which;
-        if (gameIsOn == true) {
-          console.log(gameIsOn);
-          switch (which) {
-            case 65:
-            winner = player1Name + ' won.'
-            gameIsOn = movePlayer('player1');
-            break;
+function onKeyUp(e) {
+    // console.log('you wake me up');
 
-            case 80:
-            winner = player2Name + ' won.'
-            gameIsOn = movePlayer('player2');
-            break;
+  if (!gameIsOn) {
+    return;  // Nothing to do here
+  }
 
-            default:
-            console.log("Wrong key pressed.");
-          }
-        };
-        console.log(gameIsOn);
-        if (gameIsOn == false) {
-          console.log('plr1' + ($("#getnames input:nth-child(1)").val() !== "name of 1st player"));
-          console.log('plr2' + ($("#getnames input:nth-child(2)").val() !== "name of 2nd player"));
-          console.log(($("#getnames input:nth-child(2)").val() !== "name of 2nd player") && ($("#getnames input:nth-child(1)").val() !== "name of 1st player"))
-          endSession();
-          console.log('plr1' + ($("#getnames input:nth-child(1)").val() !== "name of 1st player"));
-          console.log('plr2' + ($("#getnames input:nth-child(2)").val() !== "name of 2nd player"));
-          console.log(($("#getnames input:nth-child(2)").val() !== "name of 2nd player") && ($("#getnames input:nth-child(1)").val() !== "name of 1st player"))
-
-             // && ($("#getnames input:nth-child(2)").val() !== "name of 2nd player")));
-          console.log(gameIsOn);
-        };
-      });
-
+  var which = e.which;
+  switch (which) {
+    case 65:
+    var moveEndedUpInWin = movePlayer('player1');
+    if (moveEndedUpInWin == true) {
+      gameIsOn = false;
+      var endTime = new Date;
+      postAjax(calculateGameTime(startTime, endTime), 1);
+      displayResults(1);
+      switchToStartButton();
     }
+    break;
+
+    case 80:
+    var moveEndedUpInWin = movePlayer('player2');
+    if (moveEndedUpInWin == true) {
+      gameIsOn = false;
+      var endTime = new Date;
+      postAjax(calculateGameTime(startTime, endTime), 2);
+      displayResults(2);
+      switchToStartButton();
+    }
+    break;
+
+    default:
+    // console.log("Wrong key pressed.");
+  }
+}
+
+
+// ********************************DOCUMENT READY*****************************
+
+
+$(document).ready(function() {
+  listenToKeypresses();
+  switchToStartButton();
+
+  $('#startbutton').submit(function(event) {
+    switchToForm();
+    $('#form').submit(function(event) {
+      displayNames();
+      setGameBoard();
+      switchToGame();
+      startTime = new Date;
+      gameIsOn = true;
+      event.preventDefault();
+    });
     event.preventDefault();
   });
-});
+}
+);

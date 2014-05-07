@@ -1,35 +1,53 @@
 <!DOCTYPE HTML>
 <html>
 <head>
-  <title></title>
+  <title>Wagon race</title>
   <meta charset="utf-8">
   <link rel="stylesheet" href="css/normalize.css">
   <link rel="stylesheet" href="main.css">
   <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
 </head>
 <body>
-    <form id="sessionclosed">
+
+
+
+
+    <form id="startbutton">
       <input type="submit" value="Start a game !">
     </form>
-    <form id="getnames">
-      <input type="text" value="name of 1st player">
-      <input type="text" value="name of 2nd player">
+
+
+    <form id="form">
+      <input id="plyr1input" type="text" placeholder="name of 1st player" value="">
+      <input id="plyr2input" type="text" placeholder="name of 2nd player" value="">
       <input type="submit" value="Yallah !">
     </form>
-  <div class="game_wrapper">
+
+
+
+
+
+  <div id="game">
     <div>Press A/P keys to make black squares move right. First player to reach the end square wins!</div>
     <br>
-    <!-- <div>Time elapsed: </div><div class="time"></div> -->
+    <!-- <div>Time elapsed: </div><div id="time"></div> -->
     <br>
-    <div class="results_wrapper">
+
+
+    <div id="results">
     </div>
     <br>
-    <table class="racer_table">
+
+
+
+
+
+    <table id="racer_table">
       <tr id="player1_race">
-        <td class="player1name"></td>
+        <td id="player1name"></td>
         <td></td>
-        <td class="player1score"></td>
-        <td class="start active"></td>
+        <td id="player1score"></td>
+        <td class="start currentposition"></td>
         <td></td>
         <td></td>
         <td></td>
@@ -42,10 +60,10 @@
         <td class="finish"></td>
       </tr>
       <tr id="player2_race">
-        <td class="player2name"></td>
+        <td id="player2name"></td>
         <td></td>
-        <td class="player2score"></td>
-        <td class="start active"></td>
+        <td id="player2score"></td>
+        <td class="start currentposition"></td>
         <td></td>
         <td></td>
         <td></td>
